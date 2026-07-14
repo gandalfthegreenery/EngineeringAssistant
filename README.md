@@ -46,9 +46,8 @@ This project serves both as a learning exercise and as a foundation for more adv
 
 # System Architecture
 
-```
 ![System_architecture](data/assets/folder-contents.png)
-```
+
 
 ---
 
@@ -56,9 +55,9 @@ This project serves both as a learning exercise and as a foundation for more adv
 
 Documents are processed through a streaming ingestion pipeline.
 
-```
-![Retrieval Pipeline](.data/assets/Ingestion%20Pipeline.png)
-```
+
+![Ingestion Pipeline](data/assets/Ingestion%20Pipeline.png)
+
 
 ### Pipeline Stages
 
@@ -88,17 +87,17 @@ Stores embeddings and metadata inside a persistent ChromaDB collection.
 
 When a user asks a question, the following workflow is executed.
 
-```
+
 ![Retrieval Pipeline](.data/assets/Prompt-Retrieval-Pipeline.png)
-```
+
 
 ---
 
 # Project Structure
 
-```
+
 ![Project Strucutre](.data/assets/folder-contents.png)
-```
+
 
 ---
 
