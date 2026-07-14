@@ -47,23 +47,7 @@ This project serves both as a learning exercise and as a foundation for more adv
 # System Architecture
 
 ```
-                     User
-                       │
-                       ▼
-                 FastAPI Endpoint
-                       │
-                       ▼
-                  RAG Service
-                       │
-       ┌───────────────┼───────────────┐
-       ▼               ▼               ▼
-  Retriever      Prompt Builder   LLM Service
-       │
-       ▼
-   ChromaDB
-       ▲
-       │
-  Ingestion Pipeline
+![System_architecture](data/assets/folder-contents.png)
 ```
 
 ---
@@ -73,29 +57,14 @@ This project serves both as a learning exercise and as a foundation for more adv
 Documents are processed through a streaming ingestion pipeline.
 
 ```
-Engineering Documents
-        │
-        ▼
-   File Loader
-        │
-        ▼
-    PDF Loader
-        │
-        ▼
-     Chunker
-        │
-        ▼
-Embedding Service
-        │
-        ▼
-     ChromaDB
+![Retrieval Pipeline](data/assets/Ingestion%20Pipeline.png)
 ```
 
 ### Pipeline Stages
 
 **File Loader**
 
-Determines the document type and dispatches to the appropriate parser. The architecture is designed to support future document types beyond PDF.
+Determines the document type and dispatches to the appropriate parser. The architecture is designed to support future document types beyond PDF and txt.
 
 **PDF Loader**
 
@@ -120,25 +89,7 @@ Stores embeddings and metadata inside a persistent ChromaDB collection.
 When a user asks a question, the following workflow is executed.
 
 ```
-Question
-    │
-    ▼
-Embed Question
-    │
-    ▼
-Vector Search
-    │
-    ▼
-Top-k Retrieval
-    │
-    ▼
-Prompt Construction
-    │
-    ▼
-OpenAI LLM
-    │
-    ▼
-Answer + Source Citations
+![Retrieval Pipeline](data/assets/Prompt-Retrieval-Pipeline.png)
 ```
 
 ---
@@ -146,35 +97,7 @@ Answer + Source Citations
 # Project Structure
 
 ```
-app/
-│
-├── ingestion/
-│   ├── file_loader.py
-│   ├── chunker.py
-│   ├── embedding_service.py
-│   └── sync.py
-│
-├── retrieval/
-│   ├── retriever.py
-│   └── prompt_builder.py
-│
-├── services/
-│   ├── rag_service.py
-│   └── llm_service.py
-│
-├── vectorstore/
-│   ├── chroma_store.py
-│   └── json_store.py
-│
-├── api/
-│   ├── health.py
-│   ├── query.py
-│   └── upload.py
-│
-├── core/
-│   └── config.py
-│
-└── main.py
+![Project Strucutre](data/assets/folder-contents.png)
 ```
 
 ---
@@ -189,6 +112,7 @@ Each module performs one well-defined task.
 |---------|----------------|
 | File Loader | Dispatch document parsers |
 | PDF Loader | Extract document text |
+| Text Loader | Extract document text |
 | Chunker | Split text into semantic chunks |
 | Embedding Service | Generate vector embeddings |
 | Chroma Store | Persistent vector storage |
@@ -204,51 +128,7 @@ This architecture keeps components independently testable and easily replaceable
 
 # API
 
-## Health Check
-
-```
-GET /health
-```
-
-Response
-
-```json
-{
-    "status": "healthy"
-}
-```
-
----
-
-## Query Documents
-
-```
-POST /query
-```
-
-Request
-
-```json
-{
-    "question": "How do I calibrate the actuator?"
-}
-```
-
-Response
-
-```json
-{
-    "answer": "...",
-    "sources": [
-        {
-            "document": "manual.pdf",
-            "page": 18
-        }
-    ]
-}
-```
-
----
+![Retrieval Pipeline](data/assets/FastAPI.png)
 
 # Technologies
 
@@ -316,11 +196,6 @@ OPENAI_API_KEY=your_api_key_here
 
 Start the application
 
-```bash
-python main.py
-```
-
-or
 
 ```bash
 uvicorn app.main:app --reload
