@@ -56,7 +56,7 @@ This project serves both as a learning exercise and as a foundation for more adv
 Documents are processed through a streaming ingestion pipeline.
 
 
-![Ingestion Pipeline](data/assets/Ingestion%20Pipeline.png)
+![Ingestion Pipeline](data/assets/Ingestion_Pipeline.png)
 
 
 ### Pipeline Stages
@@ -93,13 +93,6 @@ When a user asks a question, the following workflow is executed.
 
 ---
 
-# Project Structure
-
-
-![Project Strucutre](data/assets/folder-contents.png)
-
-
----
 
 # Design Philosophy
 
@@ -194,7 +187,6 @@ OPENAI_API_KEY=your_api_key_here
 # Running
 
 Start the application
-
 
 ```bash
 uvicorn app.main:app --reload
