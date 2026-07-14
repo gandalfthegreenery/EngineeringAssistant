@@ -96,7 +96,7 @@ When a user asks a question, the following workflow is executed.
 # Project Structure
 
 
-![Project Strucutre](.data/assets/folder-contents.png)
+![Project Strucutre](data/assets/folder-contents.png)
 
 
 ---
@@ -127,7 +127,7 @@ This architecture keeps components independently testable and easily replaceable
 
 # API
 
-![Retrieval Pipeline](.data/assets/FastAPI.png)
+![Retrieval Pipeline](data/assets/FastAPI.png)
 
 # Technologies
 
